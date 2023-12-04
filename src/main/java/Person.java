@@ -45,10 +45,10 @@ public class Person {
             this.state = new Immune(this);
         } else if (memento.getState() instanceof Healthy) {
             this.state = new Healthy(this);
+        } else if (memento.getState() instanceof InfectedVisible) {
+            this.state = new InfectedVisible(this);
         } else if (memento.getState() instanceof Infected) {
             this.state = new Infected(this);
-        } else {
-            this.state = new InfectedVisible(this);
         }
         this.around = new HashMap<>();
         this.infectedTime = memento.getInfectedTime();
@@ -122,15 +122,15 @@ public class Person {
 
     public PersonMemento save() {
         Vector2D vector = new Vector2D(vector2D.getX(), vector2D.getY());
-        PersonState personState;
+        PersonState personState = null;
         if (state instanceof Immune) {
             personState = new Immune(this);
         } else if (state instanceof Healthy) {
             personState = new Healthy(this);
-        } else if (state instanceof Infected) {
-            personState = new Infected(this);
-        } else {
+        } else if (state instanceof InfectedVisible) {
             personState = new InfectedVisible(this);
+        } else if (state instanceof Infected){
+            personState = new Infected(this);
         }
 
         return new PersonMemento(velocity, vector, x, y, personState, infectedTime);
