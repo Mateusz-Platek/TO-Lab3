@@ -1,0 +1,3 @@
+public enum EnumState {
+    IMMUNE, HEALTHY, INFECTED, INFECTEDVISIBLE
+}
